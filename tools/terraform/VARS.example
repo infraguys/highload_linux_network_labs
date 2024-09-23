@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+export TF_VAR_user_email=YOUR_EMAIL
+echo "Please enter your OpenStack Password"
+read -sr TF_VAR_user_password_INPUT
+export TF_VAR_user_password=$TF_VAR_user_password_INPUT
+export TF_VAR_project_id=YOUR_PROJECT_ID

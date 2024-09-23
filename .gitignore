@@ -1,0 +1,3 @@
+tools/terraform/.terraform*
+tools/terraform/VARS*
+tools/terraform/*.tfstate*
