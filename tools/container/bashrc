@@ -1,0 +1,5 @@
+if [[ -z "${FORCE_BASH}" ]]; then
+  echo "Oh you silly! Shell has a day off!"
+  echo "PS: we're hiring! :)"
+  exit 1
+fi

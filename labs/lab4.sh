@@ -54,7 +54,7 @@ create() {
 
     log "Create docker network "$DOCKER_NET_NAME" with subnet $DOCKER_NET_SUBNET"
     $DOCKER network create --subnet="$DOCKER_NET_SUBNET" "$DOCKER_NET_NAME"
-    $DOCKER run -d --privileged --net "$DOCKER_NET_NAME" --ip "$DOCKER_NET_ADDR" --name "$DOCKER_CONTAINER_NAME" -it "$DOCKER_IMAGE" bash -c 'while true; do sleep 30; done'
+    $DOCKER run -d --privileged --net "$DOCKER_NET_NAME" --ip "$DOCKER_NET_ADDR" --name "$DOCKER_CONTAINER_NAME" -it "$DOCKER_IMAGE" /looper.sh
 }
 
 
