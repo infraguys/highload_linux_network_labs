@@ -34,6 +34,22 @@ echo "[TASK 1] Enable ssh password authentication"
 sed -i 's/^PasswordAuthentication .*/PasswordAuthentication yes/' /etc/ssh/sshd_config
 systemctl reload sshd
 
+echo "[TASK 2] Prepare packages"
+apt update
+apt install docker.io openvswitch-switch -y
+
+echo "[TASK 3] Prepare docker"
+usermod -a -G docker debian
+
+echo "[TASK 4] Prefetch docker images"
+docker image pull ghcr.io/infraguys/debian_lab
+
+echo "[TASK 5] Clone git repo with labs"
+cd /home/debian
+git clone https://github.com/infraguys/highload_linux_network_labs.git
+chown debian:debian -R ./highload_linux_network_labs
+cd -
+
   EOF
 }
 
