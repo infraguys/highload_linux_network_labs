@@ -69,7 +69,7 @@ delete_netns() {
     nsname="$1"
     ext_iface_name="${nsname}ext"
 
-    $IP link delete "$ext_iface_name"
+    $IP link delete "$ext_iface_name" || true
     $IP netns delete "$nsname"
 }
 
@@ -91,7 +91,7 @@ delete() {
     log "Delete test lab"
 
     log "Delete netns=$NS_NAME"
-    delete_netns "$NS_NAME"
+    delete_netns "$NS_NAME" || true
 }
 
 

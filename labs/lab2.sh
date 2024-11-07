@@ -112,9 +112,9 @@ delete() {
     log "Delete test lab"
 
     log "Delete netns=$ROUTER_NS_NAME"
-    delete_netns "$ROUTER_NS_NAME"
+    delete_netns "$ROUTER_NS_NAME" || true
     log "Delete netns=$CLIENT_NS_NAME"
-    delete_netns "$CLIENT_NS_NAME"
+    delete_netns "$CLIENT_NS_NAME" || true
 }
 
 

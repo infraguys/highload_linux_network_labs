@@ -71,7 +71,7 @@ delete_netns() {
     nsname="$1"
     ext_iface_name="${nsname}ext"
 
-    $IP link delete "$ext_iface_name"
+    $IP link delete "$ext_iface_name" || true
     $IP netns delete "$nsname"
 }
 
@@ -106,15 +106,15 @@ delete() {
 
     log "Delete bridge=$BRIDGE_NAME"
     ext_ns_iface_name="${NS_NAME}ext"
-    $IP link set dev "$ext_ns_iface_name" nomaster
-    $IP link set dev "$MAIN_NS_2_BRIDGE" nomaster
-    $IP link delete "$BRIDGE_NAME"
+    $IP link set dev "$ext_ns_iface_name" nomaster || true
+    $IP link set dev "$MAIN_NS_2_BRIDGE" nomaster || true
+    $IP link delete "$BRIDGE_NAME" || true
 
     log "Delete veth $MAIN_NS_IFACE<->$MAIN_NS_2_BRIDGE in main netns"
-    $IP link delete "$MAIN_NS_IFACE"
+    $IP link delete "$MAIN_NS_IFACE" || true
 
     log "Delete netns=$NS_NAME"
-    delete_netns "$NS_NAME"
+    delete_netns "$NS_NAME" || true
 }
 
 
