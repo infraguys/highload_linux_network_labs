@@ -66,7 +66,7 @@ cd -
 #   port         = var.port_range_start+split(".", each.value.access_ip_v4)[3]
 
 #   commands = [
-#      "echo im ready"
+#      "ls | grep lab"
 #   ]
 
 #   timeout     = "15s"
