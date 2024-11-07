@@ -36,7 +36,7 @@ IP="${PRECMD}$(which ip)"
 
 
 # Lab params
-BRIDGE_NAME="br"
+BRIDGE_NAME="br-test"
 NS_NAME="neighns"
 IP_MAIN_NS="192.168.100.1"
 MAC_MAIN_NS="fa:16:3e:00:00:01"
