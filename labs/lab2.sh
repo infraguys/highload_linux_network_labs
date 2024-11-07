@@ -123,9 +123,9 @@ lab_test() {
 
     # Check connectivity
     if [ -z "$DEBUG" ]; then
-        ping -c 1 "$IP_NS1" -W 0.5 && log "Test result: Success" || log "Test result: Failed" "ERROR"
+        ping -c 1 "$IP_CLIENT_NS" -W 0.5 && log "Test result: Success" || log "Test result: Failed" "ERROR"
     else
-        echo "ping -c 1 $IP_NS1 -W 0.5"
+        echo "ping -c 1 $IP_CLIENT_NS -W 0.5"
         log "Test result: Undefined"
     fi
 }
