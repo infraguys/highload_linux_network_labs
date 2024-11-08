@@ -102,8 +102,15 @@ case "$CMD" in
         lab_test
         ;;
     task)
-        log "Need successfull ping of $DOCKER_NET_ADDR address, which is configured in docker container $DOCKER_NET_NAME."
-        log "Use '$ME get_into_container' to attach into container's shell"
+        log "
+        Need successfull ping of $DOCKER_NET_ADDR address, which is configured in docker container $DOCKER_NET_NAME.
+        Use '$ME get_into_container' to attach into container's shell if you want to try.
+
+        Tools to look at:
+        - ip netns attach
+        - ip route
+        "
+        log ""
         ;;
     get_into_container)
         get_into_container
