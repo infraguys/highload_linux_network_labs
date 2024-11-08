@@ -54,21 +54,24 @@ cd -
 }
 
 
-# resource "ssh_resource" "always_run" {
-#   for_each = {for i in vkcs_compute_instance.instance : i.name => i}
-#   triggers = {
-#     always_run = "${timestamp()}"
-#   }
+resource "ssh_resource" "always_run" {
+  for_each = {for idx, val in vkcs_compute_instance.instance : idx => val}
+  triggers = {
+    always_run = "${timestamp()}"
+  }
 
-#   host         = vkcs_dc_interface.dc_interface_internet.ip_address
-#   user         = var.image_user
-#   private_key  = file("~/.ssh/infraguys")
-#   port         = var.port_range_start+split(".", each.value.access_ip_v4)[3]
+  host         = vkcs_dc_interface.dc_interface_internet.ip_address
+  user         = var.image_user
+  private_key  = file("~/.ssh/infraguys")
+  port         = var.port_range_start+split(".", each.value.access_ip_v4)[3]
 
-#   commands = [
-#      "ls | grep lab"
-#   ]
+  commands = [
+     "ls | grep lab",
+     "cd ./highload_linux_network_labs && git pull && cd -",
+     "cp -a ./highload_linux_network_labs/labs/* ./",
+     " sudo usermod --password $(echo  ${random_password.password[each.key].result} | openssl passwd -1 -stdin) debian"
+  ]
 
-#   timeout     = "15s"
-#   retry_delay = "5s"
-# }
+  timeout     = "15s"
+  retry_delay = "5s"
+}
