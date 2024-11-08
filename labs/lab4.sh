@@ -69,9 +69,9 @@ delete() {
     log "Delete test lab"
 
     log "Delete docker network "$DOCKER_NET_NAME" with subnet $DOCKER_NET_SUBNET"
-    $DOCKER kill "$DOCKER_CONTAINER_NAME"
-    $DOCKER rm "$DOCKER_CONTAINER_NAME"
-    $DOCKER network rm "$DOCKER_NET_NAME"
+    $DOCKER kill "$DOCKER_CONTAINER_NAME" || true
+    $DOCKER rm "$DOCKER_CONTAINER_NAME" || true
+    $DOCKER network rm "$DOCKER_NET_NAME" || true
 }
 
 

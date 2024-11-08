@@ -112,9 +112,9 @@ delete() {
     log "Delete test lab"
 
     log "Delete netns=$ROUTER_NS_NAME"
-    delete_netns "$ROUTER_NS_NAME"
+    delete_netns "$ROUTER_NS_NAME" || true
     log "Delete netns=$CLIENT_NS_NAME"
-    delete_netns "$CLIENT_NS_NAME"
+    delete_netns "$CLIENT_NS_NAME" || true
 }
 
 
@@ -123,9 +123,9 @@ lab_test() {
 
     # Check connectivity
     if [ -z "$DEBUG" ]; then
-        ping -c 1 "$IP_NS1" -W 0.5 && log "Test result: Success" || log "Test result: Failed" "ERROR"
+        ping -c 1 "$IP_CLIENT_NS" -W 0.5 && log "Test result: Success" || log "Test result: Failed" "ERROR"
     else
-        echo "ping -c 1 $IP_NS1 -W 0.5"
+        echo "ping -c 1 $IP_CLIENT_NS -W 0.5"
         log "Test result: Undefined"
     fi
 }
@@ -142,9 +142,7 @@ case "$CMD" in
         ;;
     test)
         [ -n "$DEBUG" ] || check
-        create
         lab_test
-        delete
         ;;
     task)
         log "Need successfull ping $IP_CLIENT_NS"
