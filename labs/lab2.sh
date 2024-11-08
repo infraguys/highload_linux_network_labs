@@ -33,11 +33,9 @@ check() {
 # Binary
 [ -n "$DEBUG" ] && PRECMD="echo " || PRECMD=""
 IP="${PRECMD}$(which ip)"
-SYSCTL="${PRECMD}$(which sysctl)"
 
 # Lab params
 # Main netns params
-MAIN_NS_CIDR="192.168.100.0/24"
 IP_MAIN_NS="192.168.100.1"
 MAC_MAIN_NS="fa:16:3e:00:00:01"
 # Router netns params
