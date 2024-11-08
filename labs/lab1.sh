@@ -122,7 +122,14 @@ case "$CMD" in
         lab_test
         ;;
     task)
-        log "Need successfull ping $IP_NS1"
+        log "
+        Need successfull ping $IP_NS1
+
+        Tools to look at:
+        - ip address (add|del|show)
+        - ip netns (ls|exec)
+        - tcpdump -nni <iface_name>
+        "
         ;;
     *)
         log "Unknown command. Use {create|delete|test|task} [DEBUG]" "ERROR"
