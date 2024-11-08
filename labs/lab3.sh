@@ -33,6 +33,7 @@ check() {
 # Binary
 [ -n "$DEBUG" ] && PRECMD="echo " || PRECMD=""
 IP="${PRECMD}$(which ip)"
+ECHO="${PRECMD}$(which echo)"
 
 
 # Lab params
@@ -82,6 +83,7 @@ create() {
     log "Create netns=$NS_NAME ip=$IP_NS1 mac=$MAC_NS1"
     create_netns "$NS_NAME" "${IP_NS1}/24" "$MAC_NS1"
     ext_ns_iface_name="${NS_NAME}ext"
+    int_ns_iface_name="${NS_NAME}int"
 
     log "Create veth $MAIN_NS_IFACE<->$MAIN_NS_2_BRIDGE in main netns"
     $IP link add "$MAIN_NS_IFACE" type veth peer name "$MAIN_NS_2_BRIDGE"
@@ -98,11 +100,20 @@ create() {
     $IP link set dev "$BRIDGE_NAME" up
     $IP link set dev "$ext_ns_iface_name" master "$BRIDGE_NAME"
     $IP link set dev "$MAIN_NS_2_BRIDGE" master "$BRIDGE_NAME"
+    # Disable iptables for bridges
+    $ECHO 0 > /proc/sys/net/bridge/bridge-nf-call-iptables
+
+    # Populate ARP manually
+    $IP neigh replace "$IP_NS1" dev "$MAIN_NS_IFACE" lladdr "$MAC_NS1"
+    $IP netns exec "$NS_NAME" ip neigh replace "$IP_MAIN_NS" dev "$int_ns_iface_name" lladdr "$MAC_NS1"
 }
 
 
 delete() {
     log "Delete test lab"
+
+    # Enable iptables for bridges
+    $ECHO 1 > /proc/sys/net/bridge/bridge-nf-call-iptables
 
     log "Delete bridge=$BRIDGE_NAME"
     ext_ns_iface_name="${NS_NAME}ext"
