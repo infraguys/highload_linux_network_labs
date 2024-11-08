@@ -119,9 +119,7 @@ case "$CMD" in
         ;;
     test)
         [ -n "$DEBUG" ] || check
-        create
         lab_test
-        delete
         ;;
     task)
         log "Need successfull ping $IP_NS1"
