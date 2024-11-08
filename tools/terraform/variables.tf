@@ -1,6 +1,6 @@
 resource "random_password" "password" {
   count            = var.instances_number
-  length           = 12
+  length           = 8
   special          = false
 }
 
