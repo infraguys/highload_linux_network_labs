@@ -179,7 +179,15 @@ case "$CMD" in
         lab_test
         ;;
     task)
-        log "Need successfull ping $IP_NS1"
+        log "
+        Need successfull ping $IP_NS1
+
+        Tools to look at:
+        - ovs-vsctl show
+        - ovs-vsctl find interface name=<iface>
+        - ovs-ofctl dump-flows <bridge_name>
+        - ovs-ofctl -O OpenFlow13 replace-flows <bridge_name> <file_with_flows>
+        "
         ;;
     *)
         log "Unknown command. Use {create|delete|test|task} [DEBUG]" "ERROR"
