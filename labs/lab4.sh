@@ -5,7 +5,7 @@ set -ue
 set -o pipefail
 
 
-CMD="${1:-create}"
+CMD="${1:-help}"
 DEBUG="${2:-}"
 ME=$(basename "$0")
 
