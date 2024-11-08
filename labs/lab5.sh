@@ -104,7 +104,7 @@ create() {
     $IP address add "$IP_MAIN_NS/24" dev "$MAIN_NS_IFACE"
 
     log "Create ovs bridge $BRIDGE_NAME"
-    $OVSVSCTL --may-exist add-br "$BRIDGE_NAME" -- set Bridge "$BRIDGE_NAME" protocols="[OpenFlow13]"
+    $OVSVSCTL --may-exist add-br "$BRIDGE_NAME"
     $OVSVSCTL add-port "$BRIDGE_NAME" "$ext_ns_iface_name" -- set Interface "$ext_ns_iface_name" ofport_request="$EXT_PATCH_PORT"
     $OVSVSCTL add-port "$BRIDGE_NAME" "$MAIN_NS_2_BRIDGE" -- set Interface "$MAIN_NS_2_BRIDGE" ofport_request="$MAIN_PATCH_PORT"
 
