@@ -11,3 +11,8 @@ output "instance_listing" {
 output "public_ip" {
   value = vkcs_dc_interface.dc_interface_internet.ip_address
 }
+
+output "instance_ports" {
+  sensitive = false
+  value = {for index, i in vkcs_compute_instance.instance : i.name => var.port_range_start+split(".", i.access_ip_v4)[3]}
+}
