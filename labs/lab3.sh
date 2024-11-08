@@ -156,7 +156,14 @@ case "$CMD" in
         lab_test
         ;;
     task)
-        log "Need successfull ping $IP_NS1"
+        log "
+        Need successfull ping $IP_NS1
+
+        Tools to look at:
+        - ip neigh (add|del|show)
+        - bridge link show [<bridge_name>]
+        - bridge fdb [show br <bridge_name>]
+        "
         ;;
     *)
         log "Unknown command. Use {create|delete|test|task} [DEBUG]" "ERROR"

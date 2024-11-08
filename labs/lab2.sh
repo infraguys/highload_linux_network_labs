@@ -143,7 +143,12 @@ case "$CMD" in
         lab_test
         ;;
     task)
-        log "Need successfull ping $IP_CLIENT_NS"
+        log "
+        Need successfull ping $IP_CLIENT_NS
+
+        Tools to look at:
+        - ip route (add|del|get)
+        "
         ;;
     *)
         log "Unknown command. Use {create|delete|test|task} [DEBUG]" "ERROR"
