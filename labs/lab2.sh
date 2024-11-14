@@ -4,7 +4,7 @@
 set -ue
 set -o pipefail
 
-
+LAB_NAME=lab2
 CMD="${1:-help}"
 DEBUG="${2:-}"
 
@@ -82,6 +82,13 @@ delete_netns() {
 
 
 create() {
+    if [ -f /tmp/lab* ]; then
+        LABS=$(ls /tmp/lab*)
+        echo $(basename $LABS) should be deleted before start lab
+        exit
+    fi
+    touch "/tmp/$LAB_NAME"
+
     log "Create test lab"
 
     log "Create router netns=$ROUTER_NS_NAME ip=$IP_ROUTER_MAIN_NS mac=$MAC_ROUTER_MAIN_NS"
@@ -113,6 +120,7 @@ delete() {
     delete_netns "$ROUTER_NS_NAME" || true
     log "Delete netns=$CLIENT_NS_NAME"
     delete_netns "$CLIENT_NS_NAME" || true
+    rm -f "/tmp/$LAB_NAME" || true
 }
 
 

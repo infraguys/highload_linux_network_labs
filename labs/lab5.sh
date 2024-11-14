@@ -4,7 +4,7 @@
 set -ue
 set -o pipefail
 
-
+LAB_NAME=lab5
 CMD="${1:-help}"
 DEBUG="${2:-}"
 
@@ -88,6 +88,13 @@ delete_netns() {
 
 
 create() {
+    if [ -f /tmp/lab* ]; then
+        LABS=$(ls /tmp/lab*)
+        echo $(basename $LABS) should be deleted before start lab
+        exit
+    fi
+    touch "/tmp/$LAB_NAME"
+
     log "Create test lab"
 
     log "Create netns=$NS_NAME ip=$IP_NS1 mac=$MAC_NS1"
@@ -149,6 +156,7 @@ delete() {
 
     log "Delete file with flows $FLOW_CACHE_FILE"
     $RM "$FLOW_CACHE_FILE" || true
+    rm -f "/tmp/$LAB_NAME" || true
 }
 
 

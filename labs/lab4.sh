@@ -4,7 +4,7 @@
 set -ue
 set -o pipefail
 
-
+LAB_NAME=lab4
 CMD="${1:-help}"
 DEBUG="${2:-}"
 ME=$(basename "$0")
@@ -50,6 +50,13 @@ DOCKER_IMAGE="ghcr.io/infraguys/debian_lab"
 
 
 create() {
+    if [ -f /tmp/lab* ]; then
+        LABS=$(ls /tmp/lab*)
+        echo $(basename $LABS) should be deleted before start lab
+        exit
+    fi
+    touch "/tmp/$LAB_NAME"
+
     log "Create test lab"
 
     log "Create docker network "$DOCKER_NET_NAME" with subnet $DOCKER_NET_SUBNET"
@@ -72,6 +79,7 @@ delete() {
     $DOCKER kill "$DOCKER_CONTAINER_NAME" || true
     $DOCKER rm "$DOCKER_CONTAINER_NAME" || true
     $DOCKER network rm "$DOCKER_NET_NAME" || true
+    rm -f "/tmp/$LAB_NAME" || true
 }
 
 
