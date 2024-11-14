@@ -36,7 +36,7 @@ systemctl reload sshd
 
 echo "[TASK 2] Prepare packages"
 apt update
-apt install docker.io openvswitch-switch -y
+apt install rsync docker.io openvswitch-switch -y
 
 echo "[TASK 3] Prepare docker"
 usermod -a -G docker debian
