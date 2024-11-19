@@ -7,6 +7,7 @@ set -o pipefail
 
 CMD="${1:-help}"
 DEBUG="${2:-}"
+ME=$(basename "$0")
 
 
 log(){
@@ -27,6 +28,24 @@ check() {
         log "Please run as root" "ERROR"
         exit 1
     fi
+}
+
+
+# lock lab
+lock() {
+    files=(/tmp/lab*)
+    if [ -e "${files[0]}" ]; then
+        base_name=$(basename "${files[0]}")
+        echo "$base_name was already created, please run: sudo ./$base_name delete"
+        exit 1
+    fi
+    touch "/tmp/$ME"
+}
+
+
+# unlock lab
+unlock() {
+    rm -f "/tmp/$ME" || true
 }
 
 
@@ -82,6 +101,7 @@ delete_netns() {
 
 
 create() {
+    lock
     log "Create test lab"
 
     log "Create router netns=$ROUTER_NS_NAME ip=$IP_ROUTER_MAIN_NS mac=$MAC_ROUTER_MAIN_NS"
@@ -113,6 +133,8 @@ delete() {
     delete_netns "$ROUTER_NS_NAME" || true
     log "Delete netns=$CLIENT_NS_NAME"
     delete_netns "$CLIENT_NS_NAME" || true
+
+    unlock
 }
 
 

@@ -34,6 +34,24 @@ check() {
 }
 
 
+# lock lab
+lock() {
+    files=(/tmp/lab*)
+    if [ -e "${files[0]}" ]; then
+        base_name=$(basename "${files[0]}")
+        echo "$base_name was already created, please run: sudo ./$base_name delete"
+        exit 1
+    fi
+    touch "/tmp/$ME"
+}
+
+
+# unlock lab
+unlock() {
+    rm -f "/tmp/$ME" || true
+}
+
+
 # Binary
 [ -n "$DEBUG" ] && PRECMD="echo " || PRECMD=""
 OVSVSCTL="${PRECMD}$(which ovs-vsctl)"
@@ -88,6 +106,7 @@ delete_netns() {
 
 
 create() {
+    lock
     log "Create test lab"
 
     log "Create netns=$NS_NAME ip=$IP_NS1 mac=$MAC_NS1"
@@ -149,6 +168,8 @@ delete() {
 
     log "Delete file with flows $FLOW_CACHE_FILE"
     $RM "$FLOW_CACHE_FILE" || true
+
+    unlock
 }
 
 
