@@ -15,10 +15,11 @@ echo "[TASK 4] Prefetch docker images"
 docker image pull ghcr.io/infraguys/debian_lab
 
 echo "[TASK 5] Clone git repo with labs"
-cd /home/debian
-git clone https://github.com/infraguys/highload_linux_network_labs.git
-chown debian:debian -R ./highload_linux_network_labs
-cd -
+(
+    cd /home/debian || exit
+    git clone https://github.com/infraguys/highload_linux_network_labs.git
+    chown debian:debian -R ./highload_linux_network_labs
+)
 
 echo "[TASK 6] Add some bash configurations"
 
