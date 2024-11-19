@@ -71,7 +71,7 @@ create() {
     lock
     log "Create test lab"
 
-    log "Create docker network "$DOCKER_NET_NAME" with subnet $DOCKER_NET_SUBNET"
+    log "Create docker network $DOCKER_NET_NAME with subnet $DOCKER_NET_SUBNET"
     $DOCKER network create --subnet="$DOCKER_NET_SUBNET" "$DOCKER_NET_NAME"
     $DOCKER run -d --privileged --net "$DOCKER_NET_NAME" --ip "$DOCKER_NET_ADDR" --name "$DOCKER_CONTAINER_NAME" -it "$DOCKER_IMAGE" /looper.sh
 }
@@ -87,7 +87,7 @@ get_into_container() {
 delete() {
     log "Delete test lab"
 
-    log "Delete docker network "$DOCKER_NET_NAME" with subnet $DOCKER_NET_SUBNET"
+    log "Delete docker network $DOCKER_NET_NAME with subnet $DOCKER_NET_SUBNET"
     $DOCKER kill "$DOCKER_CONTAINER_NAME" || true
     $DOCKER rm "$DOCKER_CONTAINER_NAME" || true
     $DOCKER network rm "$DOCKER_NET_NAME" || true
@@ -103,7 +103,7 @@ lab_test() {
     if [ -z "$DEBUG" ]; then
         ping -c 1 "$DOCKER_NET_ADDR" -W 0.5 && log "Test result: Success" || log "Test result: Failed" "ERROR"
     else
-        echo "ping -c 1 "$DOCKER_NET_ADDR" -W 0.5"
+        echo "ping -c 1 $DOCKER_NET_ADDR -W 0.5"
         log "Test result: Undefined"
     fi
 }
