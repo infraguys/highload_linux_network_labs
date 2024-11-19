@@ -35,6 +35,24 @@ check() {
 }
 
 
+# lock lab
+lock() {
+    files=(/tmp/lab*)
+    if [ -e "${files[0]}" ]; then
+        base_name=$(basename "${files[0]}")
+        echo "$base_name was already created, please run: sudo ./$base_name delete"
+        exit 1
+    fi
+    touch "/tmp/$ME"
+}
+
+
+# unlock lab
+unlock() {
+    rm -f "/tmp/$ME" || true
+}
+
+
 # Binary
 [ -n "$DEBUG" ] && PRECMD="echo " || PRECMD=""
 DOCKER="${PRECMD}$(which docker)"
@@ -50,6 +68,7 @@ DOCKER_IMAGE="ghcr.io/infraguys/debian_lab"
 
 
 create() {
+    lock
     log "Create test lab"
 
     log "Create docker network "$DOCKER_NET_NAME" with subnet $DOCKER_NET_SUBNET"
@@ -72,6 +91,8 @@ delete() {
     $DOCKER kill "$DOCKER_CONTAINER_NAME" || true
     $DOCKER rm "$DOCKER_CONTAINER_NAME" || true
     $DOCKER network rm "$DOCKER_NET_NAME" || true
+
+    unlock
 }
 
 
