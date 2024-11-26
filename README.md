@@ -10,7 +10,7 @@
 - [lab2](./labs/lab2.sh): routing
 - [lab3](./labs/lab3.sh): bridges
 - [lab4](./labs/lab4.sh): container's network namespace
-- [lab5](./labs/lab5.sh): openVSwitch basic flows (*extra credit lab*)
+- [lab5](./labs/lab5.sh): Open vSwitch basic flows (*extra credit lab*)
 
 ## How to run it on local machine
 
