@@ -22,7 +22,7 @@ data "vkcs_compute_flavor" "basic" {
 variable "instances_number" {
   description = "Number of instances"
   type        = number
-  default     = 2
+  default     = 250
 }
 
 variable "port_range_start" {
