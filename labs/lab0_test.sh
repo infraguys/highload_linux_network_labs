@@ -61,9 +61,9 @@ IP="${PRECMD}$(which ip)"
 
 # Lab params
 NS_NAME="testns"
-IP_MAIN_NS="192.168.100.1"
+IP_MAIN_NS="192.168.100.10"
 MAC_MAIN_NS="fa:16:3e:00:00:01"
-IP_NS1="192.168.100.2"
+IP_NS1="192.168.100.20"
 MAC_NS1="fa:16:3e:00:00:02"
 
 
