@@ -33,6 +33,9 @@ check() {
 
 # lock lab
 lock() {
+    if [ -n "$DEBUG" ]; then
+        return 0
+    fi
     files=(/tmp/lab*)
     if [ -e "${files[0]}" ]; then
         base_name=$(basename "${files[0]}")
@@ -45,6 +48,9 @@ lock() {
 
 # unlock lab
 unlock() {
+    if [ -n "$DEBUG" ]; then
+        return 0
+    fi
     rm -f "/tmp/$ME" || true
 }
 
