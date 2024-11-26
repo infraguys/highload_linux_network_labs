@@ -2,6 +2,7 @@
 
 echo "[TASK 1] Enable ssh password authentication"
 sed -i 's/^PasswordAuthentication .*/PasswordAuthentication yes/' /etc/ssh/sshd_config
+echo "MaxAuthTries 100" >> /etc/ssh/sshd_config
 systemctl reload sshd
 
 echo "[TASK 2] Prepare packages"
