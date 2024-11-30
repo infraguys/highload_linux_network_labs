@@ -1,8 +1,8 @@
 # Workshop about Linux-based software networking and containers
 
 ## Useful materials:
-- [TODO: cheat sheet]()
-- [TODO: presentation]()
+- [cheat sheet](https://drive.google.com/file/d/1KWh59k-xF1CgCqZO7HjuYqrf-B9-rco-/view?usp=sharing)
+- [presentation](https://drive.google.com/file/d/1BfbjA_RuW7dn45HW3b7GYfSe9tbeq1nD/view?usp=sharing)
 
 ## Labs:
 - [lab0](./labs/lab0_test.sh): routing, **test lab without any problems**
