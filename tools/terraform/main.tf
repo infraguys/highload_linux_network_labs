@@ -46,7 +46,27 @@ resource "ssh_resource" "always_run" {
      "ls | grep lab",
      "cd ./highload_linux_network_labs && git pull && cd -",
      "cp -a ./highload_linux_network_labs/labs/* ./",
-     " sudo usermod --password $(echo  ${random_password.password[each.key].result} | openssl passwd -1 -stdin) debian"
+     " sudo usermod --password $(echo  ${random_password.password[each.key].result} | openssl passwd -1 -stdin) debian",
+     <<EOH
+cat <<EOT | sudo tee /etc/motd
+
+____   ________  __. _________ .__                   .___
+\   \ /   /    |/ _| \_   ___ \|  |   ____  __ __  __| _/
+ \   Y   /|      <   /    \  \/|  |  /  _ \|  |  \/ __ |
+  \     / |    |  \  \     \___|  |_(  <_> )  |  / /_/ |
+   \___/  |____|__ \  \______  /____/\____/|____/\____ |
+                  \/         \/                       \/
+
+Welcome to network workshop lab!
+
+All materials can be found here:
+https://github.com/infraguys/highload_linux_network_labs
+
+Support chat:
+https://t.me/hl_network_workshop
+
+EOT
+EOH
   ]
 
   timeout     = "15s"
