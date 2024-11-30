@@ -1,5 +1,12 @@
 # Workshop about Linux-based software networking and containers
 
+## Feedback, questions, etc
+
+Feel free to ask anything:
+- [Telegram chat t.me/hl_network_workshop](https://t.me/hl_network_workshop)
+- [Github discussions](https://github.com/infraguys/highload_linux_network_labs/discussions)
+- Open Issues if you have a problem with scripts
+
 ## Useful materials:
 - [cheat sheet](https://drive.google.com/file/d/1KWh59k-xF1CgCqZO7HjuYqrf-B9-rco-/view?usp=sharing)
 - [presentation](https://drive.google.com/file/d/1BfbjA_RuW7dn45HW3b7GYfSe9tbeq1nD/view?usp=sharing)
@@ -32,8 +39,3 @@ BUT we believe that common functionality is pretty simple.
 
 That's why we've prepared some tasks which can help you to gain basic experience
 via debugging of easy-to-introduce problems.
-
-
-## Feedback, questions, etc
-
-Feel free to ask anything in [Github discussions](https://github.com/infraguys/highload_linux_network_labs/discussions) and open Issues if you have a problem with scripts.
