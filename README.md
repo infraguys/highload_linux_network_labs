@@ -8,7 +8,7 @@ Feel free to ask anything:
 - Open Issues if you have a problem with scripts
 
 ## Useful materials:
-- [cheat sheet](https://drive.google.com/file/d/1KWh59k-xF1CgCqZO7HjuYqrf-B9-rco-/view?usp=sharing)
+- [cheat sheet](https://drive.google.com/file/d/1xXYeR9KwdBGP9ZKmhfIqDoeyB74StqvN/view?usp=sharing)
 - [presentation](https://drive.google.com/file/d/1BfbjA_RuW7dn45HW3b7GYfSe9tbeq1nD/view?usp=sharing)
 
 ## Labs:
