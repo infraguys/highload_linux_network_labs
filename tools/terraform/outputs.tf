@@ -16,3 +16,8 @@ output "instance_ports" {
   sensitive = false
   value = {for index, i in vkcs_compute_instance.instance : i.name => var.port_range_start+split(".", i.access_ip_v4)[3]}
 }
+
+output "instance_index" {
+  sensitive = false
+  value = {for index, i in vkcs_compute_instance.instance : index => var.port_range_start+split(".", i.access_ip_v4)[3]}
+}

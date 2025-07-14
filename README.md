@@ -9,7 +9,7 @@ Feel free to ask anything:
 
 ## Useful materials:
 - [cheat sheet](https://drive.google.com/file/d/1xXYeR9KwdBGP9ZKmhfIqDoeyB74StqvN/view?usp=sharing)
-- [presentation](https://drive.google.com/file/d/1BfbjA_RuW7dn45HW3b7GYfSe9tbeq1nD/view?usp=sharing)
+- [presentation](https://drive.google.com/file/d/1RTG-_Rcf2LWzl8YtfjizJkRM7iG_w-8g/view?usp=sharing)
 
 ## Labs:
 - [lab0](./labs/lab0_test.sh): routing, **test lab without any problems**
