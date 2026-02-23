@@ -127,7 +127,9 @@ create() {
     $IP link set dev "$ext_ns_iface_name" master "$BRIDGE_NAME"
     $IP link set dev "$MAIN_NS_2_BRIDGE" master "$BRIDGE_NAME"
     # Disable iptables for bridges
-    $ECHO 0 > /proc/sys/net/bridge/bridge-nf-call-iptables
+    if [ -f "/proc/sys/net/bridge/bridge-nf-call-iptables" ]; then
+        $ECHO 0 > /proc/sys/net/bridge/bridge-nf-call-iptables
+    fi
 
     # Populate ARP manually
     $IP neigh replace "$IP_NS1" dev "$MAIN_NS_IFACE" lladdr "$MAC_NS1"
@@ -139,7 +141,9 @@ delete() {
     log "Delete test lab"
 
     # Enable iptables for bridges
-    $ECHO 1 > /proc/sys/net/bridge/bridge-nf-call-iptables
+    if [ -f "/proc/sys/net/bridge/bridge-nf-call-iptables" ]; then
+        $ECHO 1 > /proc/sys/net/bridge/bridge-nf-call-iptables
+    fi
 
     log "Delete bridge=$BRIDGE_NAME"
     ext_ns_iface_name="${NS_NAME}ext"
