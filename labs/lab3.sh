@@ -122,6 +122,7 @@ create() {
 
     # Create bridge
     log "Setup bridge=$BRIDGE_NAME with $ext_ns_iface_name,$MAIN_NS_2_BRIDGE"
+    modprobe br_netfilter
     $IP link add "$BRIDGE_NAME" type bridge
     $IP link set dev "$BRIDGE_NAME" up
     $IP link set dev "$ext_ns_iface_name" master "$BRIDGE_NAME"
@@ -139,6 +140,7 @@ delete() {
     log "Delete test lab"
 
     # Enable iptables for bridges
+    modprobe br_netfilter
     $ECHO 1 > /proc/sys/net/bridge/bridge-nf-call-iptables
 
     log "Delete bridge=$BRIDGE_NAME"
